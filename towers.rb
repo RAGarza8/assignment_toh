@@ -9,6 +9,46 @@
 
 #####BEGIN PSEUDOCODE#######
 
+#Global variables for each piece"
+
+$small = "o   "
+$medium = "oo  "
+$large = "ooo "
+
+####Welcome players and tell them the instructions.
+
+puts "Welcome to Tower of Hanoi!"
+puts "Instructions:"
+puts "Enter where you'd like to move from and to in the format '1,3'. Enter 'q' to quit."
+
+
+#Function for current game board
+
+def gameboard(board)
+  puts "Current Board:"
+  puts " #{board[0]} #{board[1]} #{board[2]} "
+  puts " #{board[3]} #{board[4]} #{board[5]} "
+  puts " #{board[6]} #{board[7]} #{board[8]} "
+  puts " 1  " " 2  " " 3  "
+end
+
+gameboard(["#{$small} ", " ", " ", "#{$medium} ", " ", " ", "#{$large} ", " ", " "])
+
+
+    # # # Current Board:
+    # # # o
+    # # # oo
+    # # # ooo
+    # # # 1    2    3
+    # # # Enter move >
+
+#Function to take user input
+
+#Function for valid moves
+
+#Function for quitting
+
+#Function for winning
 
 
 # # > load 'towers.rb'
