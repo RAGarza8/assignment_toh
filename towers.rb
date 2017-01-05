@@ -7,62 +7,82 @@
 # in between turns. START SIMPLE! The render method usually gives people the most frustration. Start by just printing the game state in numeric form before you try to get creative with your output.
 
 
+# EXAMPLE: 
+
+# Current Board:
+# o
+# oo
+# ooo
+# 1    2    3
+# Enter move >
+
+
+
 #####BEGIN PSEUDOCODE#######
 
-#Global variables for each piece"
+#Initialize Objects - Hash with columns as keys and plates as values?  
+#User input moves values along hash?
+#To win, should move all three plates into column three.
 
-$small = "o   "
-$medium = "oo  "
-$large = "ooo "
+class TowerofHanoi
+
+
+def initialize
+  @columns = { 0 => ((1..3).to_a), 1 => [], 2 =>[]}
+  @win = { 0 => [], 1 => [], 2 => ((1..3).to_a)} #simpler way to define win without a hash.  What's the easiest way to demonstrate a win?
+end 
+
 
 ####Welcome players and tell them the instructions.
 
-puts "Welcome to Tower of Hanoi!"
-puts "Instructions:"
-puts "Enter where you'd like to move from and to in the format '1,3'. Enter 'q' to quit."
-
-
-#Function for current game board
-
-def gameboard(board)
-  puts "Current Board:"
-  puts " #{board[0]} #{board[1]} #{board[2]} "
-  puts " #{board[3]} #{board[4]} #{board[5]} "
-  puts " #{board[6]} #{board[7]} #{board[8]} "
-  puts " 1  " " 2  " " 3  "
+def instructions
+  puts "Welcome to Tower of Hanoi!"
+  puts "Instructions:"
+  puts "Enter where you'd like to move from and to in the format [1,3]. Enter 'q' to quit."
 end
 
-gameboard(["#{$small} ", " ", " ", "#{$medium} ", " ", " ", "#{$large} ", " ", " "])
+def user_input
+  if move_input.downcase == "q"
+    puts "Then go."
+    exit
+  end
+end
+
+#valid move should just test whether the user input is garbage.  A try again type option.
+#another should test the logic (second method)
+
+def valid_move
+  print "Enter Move >:"
+  move_input = gets.chomp.to_a
+end
 
 
-    # # # Current Board:
-    # # # o
-    # # # oo
-    # # # ooo
-    # # # 1    2    3
-    # # # Enter move >
 
-#Function to take user input
+#Function for valid moves, function must translate user input of 1-3 as column moves,
+#If user chooses, 1, should go into higher of 0, 3, and 6.  
+#If 2, then higher of 1, 4, 7, and if 3, higher of 2, 5, 9.
 
-#Function for valid moves
+def is_valid?
+end
+    
 
-#Function for quitting
+
+#Create a render method which prints out the current 
+#state of the game board in between turns. I think use map method 
+#so that it will return a new hash to display?
+
+def render
+end 
+
 
 #Function for winning
 
+def win
+end
 
-# # > load 'towers.rb'
-# # #=> true
-# # > t = TowerOfHanoi.new(3)
-# # #=> #<TowerOfHanoi:0x007f8ea03c93e0 @towers=3>
-# # > t.play
-# # # Welcome to Tower of Hanoi!
-# # # Instructions:
-# # # Enter where you'd like to move from and to
-# # # in the format '1,3'. Enter 'q' to quit.
-# # # Current Board:
-# # # o
-# # # oo
-# # # ooo
-# # # 1    2    3
-# # # Enter move >
+
+
+end
+
+
+#no easy way to compare hashes.  You'd have to do an interation to compare them.
