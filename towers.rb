@@ -24,21 +24,23 @@
 #User input moves values along hash?
 #To win, should move all three plates into column three.
 
-class TowerofHanoi
 
-
-def initialize
-  @columns = { 0 => ((1..3).to_a), 1 => [], 2 =>[]}
-  @win = { 0 => [], 1 => [], 2 => ((1..3).to_a)} #simpler way to define win without a hash.  What's the easiest way to demonstrate a win?
-end 
-
+# @new_board[0]
+# @new_board[0] = first tower
+# @new_board[1] = second tower
+# @new_board[2] = third tower
 
 ####Welcome players and tell them the instructions.
 
 def instructions
   puts "Welcome to Tower of Hanoi!"
-  puts "Instructions:"
-  puts "Enter where you'd like to move from and to in the format [1,3]. Enter 'q' to quit."
+  # puts "Instructions:"
+  # puts "Enter where you'd like to move from and to in the format [1,3]. Enter 'q' to quit."
+  # puts @new_board
+end
+
+def opening_board
+  board = [[2, 1, 0], [], []]
 end
 
 def user_input
@@ -72,6 +74,7 @@ end
 #so that it will return a new hash to display?
 
 def render
+
 end 
 
 
@@ -79,10 +82,3 @@ end
 
 def win
 end
-
-
-
-end
-
-
-#no easy way to compare hashes.  You'd have to do an interation to compare them.
