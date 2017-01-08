@@ -18,67 +18,44 @@
 
 
 
-#####BEGIN PSEUDOCODE#######
-
-#Initialize Objects - Hash with columns as keys and plates as values?  
-#User input moves values along hash?
-#To win, should move all three plates into column three.
-
-
-# @new_board[0]
-# @new_board[0] = first tower
-# @new_board[1] = second tower
-# @new_board[2] = third tower
-
-####Welcome players and tell them the instructions.
-
-def instructions
-  puts "Welcome to Tower of Hanoi!"
-  # puts "Instructions:"
-  # puts "Enter where you'd like to move from and to in the format [1,3]. Enter 'q' to quit."
-  # puts @new_board
+def play(disc_num, columns)
+  columns[0] = (1..disc_num).to_a.reverse
+  columns[1] = [].reverse
+  columns[2] = [].reverse
+    if win? == true
+      puts "You win!"
+      exit
+    elsif move_disc == "q"
+      puts "Then go"
+      exit
+    else 
+      puts "Enter Move >"
+      puts render_columns
+      move_disc = [from, to]
+      move_disc = gets.chomp.to_i
+    end
+  move_disc(from, to)
 end
 
-def opening_board
-  board = [[2, 1, 0], [], []]
-end
-
-def user_input
-  if move_input.downcase == "q"
-    puts "Then go."
-    exit
-  end
-end
-
-#valid move should just test whether the user input is garbage.  A try again type option.
-#another should test the logic (second method)
-
-def valid_move
-  print "Enter Move >:"
-  move_input = gets.chomp.to_a
-end
-
-
-
-#Function for valid moves, function must translate user input of 1-3 as column moves,
-#If user chooses, 1, should go into higher of 0, 3, and 6.  
-#If 2, then higher of 1, 4, 7, and if 3, higher of 2, 5, 9.
-
-def is_valid?
-end
-    
-
-
-#Create a render method which prints out the current 
-#state of the game board in between turns. I think use map method 
-#so that it will return a new hash to display?
-
-def render
-
+def render_columns
+  puts columns[0]
+  puts columns[1]
+  puts columns[2]
 end 
 
+def move_disc
+  columns[to] << columns[from].pop
+end 
 
-#Function for winning
-
-def win
+def win?(columns)
+  columns[0].empty? && columns[1].empty?
 end
+
+hanoi = []
+puts "Welcome to Tower of Hanoi!"
+puts "Instructions:"
+puts "Enter where you'd like to move from and to"
+puts "in the format '1,3'. Enter 'q' to quit."
+puts "How many discs to use?"
+disc_num = gets.chomp.to_i
+play(disc_num, hanoi)
