@@ -17,23 +17,22 @@
 # Enter move >
 
 
-
 def play(disc_num, columns)
   columns[0] = (1..disc_num).to_a.reverse
   columns[1] = [].reverse
   columns[2] = [].reverse
-    if win? == true
-      puts "You win!"
-      exit
-    elsif move_disc == "q"
-      puts "Then go"
-      exit
-    else 
+    # if win? == true
+    #   puts "You win!"
+    #   exit
+    # elsif move_disc == "q"
+    #   puts "Then go"
+    #   exit
+    # else 
       puts "Enter Move >"
       puts render_columns
       move_disc = [from, to]
       move_disc = gets.chomp.to_i
-    end
+    # end
   move_disc(from, to)
 end
 
@@ -47,9 +46,15 @@ def move_disc
   columns[to] << columns[from].pop
 end 
 
-def win?(columns)
-  columns[0].empty? && columns[1].empty?
-end
+def invalid_move
+  move_disc != []
+  puts "Invalid"
+  play
+end 
+
+# def win?(columns)
+#   columns[0].empty? && columns[1].empty?
+# end
 
 hanoi = []
 puts "Welcome to Tower of Hanoi!"
