@@ -24,29 +24,36 @@ def play(disc_num, columns)
     # if win? == true
     #   puts "You win!"
     #   exit
-    # elsif move_disc == "q"
+   # elsif move_disc == "q"
     #   puts "Then go"
     #   exit
     # else 
       puts "Enter Move >"
-      puts render_columns
+      render_columns(columns)
       move_disc = [from, to]
       move_disc = gets.chomp.to_i
     # end
   move_disc(from, to)
 end
 
-def render_columns
+def render_columns(columns)
   puts columns[0]
   puts columns[1]
   puts columns[2]
 end 
 
 def move_disc
+  # if invalid_move is false then do move
+  # else print an error
   columns[to] << columns[from].pop
 end 
 
 def invalid_move
+  # Suppose (a,b) is user input
+  # Illegal if the block at top of column b is smaller than a
+  # or top of a is smaller than top of b
+  # Strictly illegal if column a is empty.
+  # Legal if column b is empty.
   move_disc != []
   puts "Invalid"
   play
@@ -63,4 +70,6 @@ puts "Enter where you'd like to move from and to"
 puts "in the format '1,3'. Enter 'q' to quit."
 puts "How many discs to use?"
 disc_num = gets.chomp.to_i
+print disc_num
+# Input check? makes sure disc_num is positive integer
 play(disc_num, hanoi)
