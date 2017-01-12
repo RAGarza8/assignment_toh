@@ -27,12 +27,13 @@ def play(disc_num, columns)
       input = gets.chomp
       if input == "q"
         exit
-      # elsif invalid_move == true
-      #   puts "Invalid move."
       else
         input = input.split(",")  
         move_from = input[0].to_i - 1
         move_to = input[1].to_i - 1
+        if invalid_move(columns, move_from) == true
+          puts "Invalid move."
+        end 
         move_disc(columns,move_from,move_to)
         render(columns)
       end
@@ -42,21 +43,24 @@ def play(disc_num, columns)
 end
 
 def render(columns)
-  puts "Column 1"
-  puts columns[0]
-  puts "Column 2"
-  puts columns[1]
-  puts "Column 3"
-  puts columns[2]
+  columns[0].each do |visual| 
+    visual.times {print "o"}
+    puts
+  end
 end 
 
 def move_disc(columns, move_from, move_to)
   columns[move_to] << columns[move_from].pop
+
+  #Exception columns.move_to.first > move_from
+  #Could do invalid move check here and raise exception
+  #Read more about exceptions
+  #Pop could raise a nil and that might be the exception
 end 
 
-# def invalid_move(columns)
-#   columns[move_from].empty?
-# end 
+def invalid_move(columns, move_from)
+  columns[move_from].empty?
+end 
 
 def check_win(columns)
    return columns[0].empty? && columns[1].empty?
