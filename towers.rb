@@ -18,7 +18,7 @@
 
 
 def play(disc_num, columns)
-  columns[0] = (1..disc_num).to_a
+  columns[0] = (1..3).to_a.reverse
   columns[1] = []
   columns[2] = []
   render(columns)
@@ -43,11 +43,15 @@ def play(disc_num, columns)
 end
 
 def render(columns)
-  columns[0].each do |visual| 
+  columns[0].reverse_each do |visual| 
     visual.times {print "o"}
-    puts
+    puts #find way to put padding here to solve the disappearance problem
   end
+
+  puts "1".ljust(10) + "2".center(10) + "3".rjust(10)
 end 
+
+
 
 def move_disc(columns, move_from, move_to)
   columns[move_to] << columns[move_from].pop
@@ -59,7 +63,7 @@ def move_disc(columns, move_from, move_to)
 end 
 
 def invalid_move(columns, move_from)
-  columns[move_from].empty?
+  columns[move_from].empty? 
 end 
 
 def check_win(columns)
