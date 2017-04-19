@@ -1,7 +1,7 @@
 def play(disc_num, columns)
-  columns[0] = (1..3).to_a
-  columns[1] = []
-  columns[2] = []
+  columns[0] = (1..3).to_a.reverse
+  columns[1] = [].reverse
+  columns[2] = [].reverse
   render(columns)
     until check_win(columns) == true
       puts "Enter Move >"
@@ -14,6 +14,7 @@ def play(disc_num, columns)
         move_to = input[1].to_i - 1
         if invalid_move(columns, move_from, move_to) == true
           puts "Invalid move."
+          exit #Need to figure out how to loop them back into input.
         end 
         move_disc(columns,move_from,move_to)
         render(columns)
@@ -32,9 +33,7 @@ def move_disc(columns, move_from, move_to)
 end 
 
 def invalid_move(columns, move_from, move_to)
-  columns[move_from].empty? 
-  if columns[move_to].any? && columns[move_from].last > columns[move_to].last
-  end
+  columns[move_from].empty? || (columns[move_to].any? && columns[move_from].last > columns[move_to].last)
 end 
 
 def check_win(columns)
