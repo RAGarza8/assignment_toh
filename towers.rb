@@ -1,24 +1,5 @@
-# # Wrap everything in a class and focus on separating different functionality 
-# into methods instead of creating one long run-on game method.
-# # Create a game loop that finishes when the user either quits 
-# (for instance, by entering quit on the input line) or wins.
-# # Check for valid user inputs
-# # Create a render method which prints out the current state of the game board 
-# in between turns. START SIMPLE! The render method usually gives people the most frustration. Start by just printing the game state in numeric form before you try to get creative with your output.
-
-
-# EXAMPLE: 
-
-# Current Board:
-# o
-# oo
-# ooo
-# 1    2    3
-# Enter move >
-
-
 def play(disc_num, columns)
-  columns[0] = (1..3).to_a.reverse
+  columns[0] = (1..3).to_a
   columns[1] = []
   columns[2] = []
   render(columns)
@@ -31,7 +12,7 @@ def play(disc_num, columns)
         input = input.split(",")  
         move_from = input[0].to_i - 1
         move_to = input[1].to_i - 1
-        if invalid_move(columns, move_from) == true
+        if invalid_move(columns, move_from, move_to) == true
           puts "Invalid move."
         end 
         move_disc(columns,move_from,move_to)
@@ -43,27 +24,17 @@ def play(disc_num, columns)
 end
 
 def render(columns)
-  columns[0].reverse_each do |visual| 
-    visual.times {print "o"}
-    puts #find way to put padding here to solve the disappearance problem
-  end
-
-  puts "1".ljust(10) + "2".center(10) + "3".rjust(10)
-end 
-
-
+  p columns
+end
 
 def move_disc(columns, move_from, move_to)
   columns[move_to] << columns[move_from].pop
-
-  #Exception columns.move_to.first > move_from
-  #Could do invalid move check here and raise exception
-  #Read more about exceptions
-  #Pop could raise a nil and that might be the exception
 end 
 
-def invalid_move(columns, move_from)
+def invalid_move(columns, move_from, move_to)
   columns[move_from].empty? 
+  if columns[move_to].any? && columns[move_from].last > columns[move_to].last
+  end
 end 
 
 def check_win(columns)
