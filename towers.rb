@@ -1,3 +1,5 @@
+
+
 def play(disc_num, columns)
   columns[0] = (1..3).to_a.reverse
   columns[1] = [].reverse
@@ -12,10 +14,10 @@ def play(disc_num, columns)
         input = input.split(",")  
         move_from = input[0].to_i - 1
         move_to = input[1].to_i - 1
-        if invalid_move(columns, move_from, move_to) == true
-          puts "Invalid move."
-          exit #Need to figure out how to loop them back into input.
-        end 
+          if invalid_move(columns, move_from, move_to) == true
+            puts "Invalid move."
+            redo
+          end 
         move_disc(columns,move_from,move_to)
         render(columns)
       end
